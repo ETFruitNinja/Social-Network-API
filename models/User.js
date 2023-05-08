@@ -14,6 +14,7 @@ const userSchema = new Schema(
             validate: {
                 validator: function(v) {
                     // TODO: have this line check match with email in the database (I think it is currently wrong)
+                    // query database
                     return v === this.email;
                 },
                 message: props => `${props.value} is not a valid email!`
