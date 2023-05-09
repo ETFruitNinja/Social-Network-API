@@ -66,6 +66,9 @@ module.exports = {
         //     message: 'Student deleted, but no courses found',
         //   });
         // }
+
+        // deleting all of a user's thoughts
+        await Thought.deleteMany({ _id: { $in: user.thoughts } });
   
         res.json({ message: 'User successfully deleted' });
       } catch (err) {
@@ -77,7 +80,11 @@ module.exports = {
     // Update a user by ID
     async updateUserById(req, res) {
         try {
-            const user = await User.findOneAndUpdate({ _id: req.params.userId });
+            const user = await User.findOneAndUpdate(
+              { _id: req.params.userId },
+              { $set: req.body },
+              { runValidators: true, new: true }
+            );
       
             if (!user) {
               return res.status(404).json({ message: 'No such user exists' });
