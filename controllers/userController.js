@@ -89,7 +89,7 @@ module.exports = {
             if (!user) {
               return res.status(404).json({ message: 'No such user exists' });
             }
-            res.json({ message: 'User successfully deleted' });
+            res.json({ message: 'User successfully updated' });
         } catch (err) {
             console.log(err);
             res.status(500).json(err);
@@ -104,7 +104,7 @@ module.exports = {
       try {
         const user = await User.findOneAndUpdate(
           { _id: req.params.userId },
-          { $addToSet: { friends: req.body } },
+          { $addToSet: { friends: req.body.id } },
           { runValidators: true, new: true }
         );
   
@@ -124,7 +124,7 @@ module.exports = {
       try {
         const user = await User.findOneAndUpdate(
           { _id: req.params.userId },
-          { $pull: { friends: { friendId: req.params.friendId } } },
+          { $pull: { friends: req.params.friendId } },
           { runValidators: true, new: true }
         );
   

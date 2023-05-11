@@ -93,7 +93,7 @@ module.exports = {
     }
   },
   // Remove reaction from a thought
-  async removeThought(req, res) {
+  async removeReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
