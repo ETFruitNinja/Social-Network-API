@@ -5,6 +5,7 @@ module.exports = {
   async getThought(req, res) {
     try {
       const thoughts = await Thought.find();
+      console.log(thoughts);
       res.json(thoughts);
     } catch (err) {
       res.status(500).json(err);
@@ -25,10 +26,18 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Create a course
+  // Create a thought
   async createThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
+
+      console.log(thought);
+      const user = await User.findOneAndUpdate(
+        // switched from req.params to req.body
+        { username: thought.username },
+        { $addToSet: { thoughts: thought._id } },
+        { runValidators: true, new: true }
+      );
       res.json(thought);
     } catch (err) {
       console.log(err);
