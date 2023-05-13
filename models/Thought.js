@@ -28,7 +28,6 @@ const thoughtSchema = new Schema(
         toJSON: {
             virtuals: true,
         },
-        // TODO: is this id: false needed?
         id: false,
     }
 );
