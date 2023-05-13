@@ -40,7 +40,7 @@ Tutorial video link: https://drive.google.com/file/d/1YXcc1QgxsB-Nc9FbfJdYMMc-oM
 
 ## License
 
-Licensed under the MIT license.
+N/A
 
 ## Contributing
 
